@@ -1,13 +1,11 @@
 var name = 'Bob';
 //变量是一个引用. 上面名字为name的变量引用了一个内容为'Bob'的String对象
-  var foo = const [];
 
 void main() {
   int lineCount;
   assert(lineCount == null);  // true
   //没有初始化的变量自动获取默认值为null.类型为数字的变量如何没有初始化其值也是为null, 不要忘记了数字类型也是对象
   //注意: 在生产模式assert()语句会被忽略.在检查模式assert()会执行
-  foo = [];
 
 }
 
@@ -33,3 +31,7 @@ final bar1 = const [];
 final baz1 = const [];
 
 //const关键字不仅仅只用来定义变量,还可以用来创建不变的值,还能定义构造函数为const类型的
+// foo = [];  ok
+// bar = [];  error
+// baz = [];  error
+
