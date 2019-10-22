@@ -198,5 +198,56 @@ void main4() {
 
 /**
  * 词法闭包
- * 闭包是一个函数对象,它可以访问其词法范围内的变量
+ * 闭包是一个函数对象,它可以访问其词法范围内的变量, 及时函数再其原始范围之外使用
+ * 函数可以关闭周围作用域中定义的变量. 在下面的事例中 makeAdder()不好变量addBy
+ * 无论返回的函数到哪里, 他都会记住addBy
  */
+
+Function makeAder(num addBy) {
+  return (num i) => addBy + 1;
+}
+
+void main5() {
+  var add2 = makeAder(2);
+  var add4 = makeAder(4);
+
+  assert(add2() + add4() == 8);
+}
+
+
+/**
+ * 判断函数相等
+ * 下面是一个测试顶级函数, 静态方法和相等实例方法的示例
+ */
+
+void foo() {}   //A top-level function
+
+class A {
+  static void bar() {}
+  void baz() {}
+}
+
+void main6() {
+  var x;
+
+  x = foo;
+  assert(foo == x);
+
+  x = A.bar;
+  assert(A.bar == x);
+
+  var v = A();
+  var w = A();
+  var  y = w;
+  x = w.baz;
+
+  assert(y.baz == x);
+  assert(v.baz != w.baz);
+}
+
+/**
+ * 返回值
+ * 所有函数都返回一个值, 如果没有指定返回值, 则语句返回null, 隐式附加到函数体
+ */
+void foo2() {}
+// assert(foo2() == null);
