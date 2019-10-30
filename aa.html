@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [['A','a',1,[1,2,3]], ['B', 'b', 2, ['a','b','c']],['C','c',3]];
+
+        let result = [];
+
+        function flat(arr) {
+            let lengths = arr.map((item, index) => (item instanceof Array) ? item.length : false),
+                max = Math.max.apply(null, lengths), //4
+                
+                flag = false;
+            for (let i = 0; i < max; i++) {
+                let list = [],
+                    arrlist = [];
+
+                for (let item of arr) {
+                    if (item.length <= i )  continue;
+                    let temp = item[i]
+                    if (temp instanceof Array) {
+                        arrlist.push(temp);
+                        flag = true;
+                    } else {
+                        list.push(temp);
+                        flag = false;
+                    }
+                }
+                flag ? flat(arrlist) : result.push(list);
+            }
+        }
+        flat(arr);
+        console.log(result);
+    </script>
+</body>
+</html>
