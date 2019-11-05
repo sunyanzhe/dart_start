@@ -18,7 +18,7 @@ class Impostor implements Person {
 
 
 
-//一个雷实现多个接口
+//一个类实现多个接口
 class Point implements Comparable, Location {
   
 }
